@@ -3,15 +3,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const uri = process.env.MONGO_URI; // use dotenv for security
+const uri = process.env.MONGO_URI;
 console.log("Mongo URI:", process.env.MONGO_URI);
 const client = new MongoClient(uri, {
-    ssl: true,
-    serverApi: {
-        version: '1',
-        strict: true,
-        deprecationErrors: true,
-    }
+    tls: true, tlsAllowInvalidCertificates: true
 });
 
 export const connectToDB = async () => {
